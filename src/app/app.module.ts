@@ -22,7 +22,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
-      { path: 'product/:productId', component: ProductDetailsComponent }
+      { path: 'products/:productId', component: ProductDetailsComponent }
     ])
   ],
   providers: [],
