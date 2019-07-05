@@ -7,6 +7,7 @@
     <span>{{ item.name}}</span>
     <span>{{ item.price | currency}}</span>
     <a (click)="removeItem(item)">X</a>
+    <button *ngIf="!checkWishList(item)" (click)="addToWishList(item)"><i class="material-icons">star</i></button>
 </div>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { FormBuilder } from '@angular/forms';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private wishlistService: WishlistService) {
     this.items = this.cartService.getItems();
     this.checkoutForm = this.formBuilder.group({
       name: '',
@@ -35,12 +37,19 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(item) {
-      return this.cartService.removeItem(item);
+    return this.cartService.removeItem(item);
   }
 
   clearAll() {
     this.cartService.clearCart();
 
     return this.items = [];
+  }
+  addToWishList(product) {
+    window.alert('Added To wishlist');
+    return this.wishlistService.addToWishlist(product);
+  }
+  checkWishList(product) {
+    return this.wishlistService.checkWishlist(product);
   }
 }

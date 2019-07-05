@@ -5,6 +5,7 @@
             <a [title]="product.name + ' details'" [routerLink]="['/products',productId]">
                 {{product.name}}
             </a>
+            <button *ngIf="!checkWishList(product)" (click)="addToWishList(product)"><i class="material-icons">star</i></button>
     </h3>
     <p *ngIf="product.description">
         Description: {{product.description}}
