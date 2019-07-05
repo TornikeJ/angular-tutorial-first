@@ -23,7 +23,19 @@ export class CartService {
 
         return this.items;
     }
+    removeItem(item){
+        const index = this.items.indexOf(item);
+        this.items.splice(index, 1);
+    }
     getShippingPrices() {
         return this.http.get('/assets/shipping.json');
+    }
+
+    checkCart(product) {
+        if (this.items.includes(product)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

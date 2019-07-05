@@ -1,10 +1,12 @@
 <h3>Cart</h3>
+<button (click)="clearAll()" *ngIf="items.length!=0">Clear all</button>
 <p>
     <a routerLink="/shipping">Shipping Prices</a>
 </p>
 <div class="cart-item" *ngFor="let item of items">
     <span>{{ item.name}}</span>
     <span>{{ item.price | currency}}</span>
+    <a (click)="removeItem(item)">X</a>
 </div>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
