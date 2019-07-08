@@ -29,8 +29,46 @@
 
 <div>
     <h3>Errors:</h3>
-
-    <div *ngIf="registerForm.controls.email.errors.email">Email should have type email</div>
+    <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
+        <div *ngIf="registerForm.controls.email.errors.required">
+            Email is required
+        </div>
+        <div *ngIf="registerForm.controls.email.errors.email">
+            Email should have type email
+        </div>
+    </div>
+    <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)">
+        <div *ngIf="registerForm.controls.password.errors.required">
+            Password is required
+        </div>
+        <div *ngIf="registerForm.controls.password.errors.pattern">
+            Password should contain english letters
+        </div>
+        <div *ngIf="registerForm.controls.password.errors.minlength">
+            Password should contain minimum 7 characters
+        </div>
+    </div>
+    <div *ngIf="registerForm.controls.confirmPass.invalid && (registerForm.controls.confirmPass.dirty || registerForm.controls.confirmPass.touched)">
+        <div *ngIf="registerForm.controls.confirmPass.errors?.checkConfirmPass">
+            Input must be equal to password
+        </div>
+    </div>
+    <div *ngIf="registerForm.controls.nickname.invalid && (registerForm.controls.nickname.dirty || registerForm.controls.nickname.touched)">
+        <div *ngIf="registerForm.controls.nickname.errors.required">
+            Nickname is required
+        </div>
+        <div *ngIf="registerForm.controls.nickname.errors.pattern">
+            Nickname should contain english letters
+        </div>
+    </div>
+    <div *ngIf="registerForm.controls.phoneNumber.invalid && (registerForm.controls.phoneNumber.dirty || registerForm.controls.phoneNumber.touched)">
+        <div *ngIf="registerForm.controls.phoneNumber.errors.required">
+            Phone number is requried
+        </div>
+        <div *ngIf="!registerForm.controls.phoneNumber.errors.forbiddenNumber?.invalid">
+            Phone number must start with +380
+        </div>
+    </div>
     <!-- <div *ngIf="address.invalid && (address.dirty || address.touched)">
         <div *ngIf="!address.errors?.zipStatus">
             Zip length should be less than 3

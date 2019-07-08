@@ -15,14 +15,20 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(7)]],
+      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z-0-9]*$'), Validators.minLength(7)]],
       confirmPass: ['', [Validators.required]],
-      nickname: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(7)]],
+      nickname: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')]],
+      phoneNumber: ['', [Validators.required, this.forbiddenNumber()]],
       website: ['', [Validators.required]]
     }, {
-        // validators: this.crossValidation
       });
+  }
+
+  forbiddenNumber() {
+    return (formControl) => {
+      const val = formControl.value.toString();
+      return val.substring(0, 4) === '+380' ? { forbiddenNumber: { invalid: false } } : null;
+    }
   }
 
   //   static isZipValid(zip) {
