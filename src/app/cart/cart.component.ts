@@ -29,8 +29,10 @@ export class CartComponent implements OnInit {
     this.checkoutForm.reset();
   }
   setDefault() {
-    this.checkoutForm.get('name').setValue('John Doe');
-    this.checkoutForm.get('address').setValue('Tbilisi');
+    this.checkoutForm.patchValue({
+      name: 'John Doe',
+      address: 'Kyiv'
+    });
   }
   ngOnInit() {
 
