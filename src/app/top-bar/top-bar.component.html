@@ -2,12 +2,24 @@
     <h1>My Store</h1>
 </a>
 
-<a [routerLink]="['/cart']" class="button fancy-button">
-    <i class="material-icons">shopping_cart</i>
-    Checkout
-</a>
 
-<a [routerLink]="['/wishlist']" class="button fancy-button">
-    <i class="material-icons">star</i>
-    Wishlist
-</a>
+<div>
+    <a [routerLink]="['/register']" class="button fancy-button">
+        Register
+    </a>
+    <a [routerLink]="['/users']" class="button fancy-button">
+        Users
+    </a>
+</div>
+
+<div>
+    <a [routerLink]="['/cart']" class="button fancy-button">
+        <i class="material-icons">shopping_cart</i>
+        Checkout
+    </a>
+    
+    <a [routerLink]="['/wishlist']" class="button fancy-button">
+        <i class="material-icons">star</i>
+        Wishlist
+    </a>
+</div>

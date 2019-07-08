@@ -1,0 +1,53 @@
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+            <div>
+                <label>E-mail</label>
+                <input type="email" formControlName="email">
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" formControlName="password">
+            </div>
+            <div>
+                <label>Confirm Password</label>
+                <input type="password" formControlName="confirmPass">
+            </div>
+            <div>
+                <label>Nickname</label>
+                <input type="text" formControlName="nickname">
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input type="number" formControlName="phoneNumber">
+            </div>
+            <div>
+                <label>Website</label>
+                <input type="url" formControlName="website">
+            </div>
+        </form>
+</div>
+
+<div>
+    <h3>Errors:</h3>
+
+    <div *ngIf="registerForm.controls.email.errors.email">Email should have type email</div>
+    <!-- <div *ngIf="address.invalid && (address.dirty || address.touched)">
+        <div *ngIf="!address.errors?.zipStatus">
+            Zip length should be less than 3
+        </div>
+        <div *ngIf="!address.errors?.cityStatus">
+            City name should start from letter A
+        </div>
+    </div>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">
+            Name is required 
+        </div>
+        <div *ngIf="name.errors.minlength">
+            Name must be at least 4 characters long
+        </div>
+        <div *ngIf="name.errors.forbiddenName?.invalid">
+            Name can't be like an {{name.value}}
+        </div>
+    </div> -->
+</div>
