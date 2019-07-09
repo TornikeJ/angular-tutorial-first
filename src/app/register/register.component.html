@@ -24,49 +24,59 @@
                 <label>Website</label>
                 <input type="url" formControlName="website">
             </div>
+            <div class="agreement">
+                <input type="checkbox" formControlName="checkbox">
+                <label>I have read the <a href="#">agreement</a> </label>
+            </div>
         </form>
 </div>
 
 <div>
     <h3>Errors:</h3>
-    <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
-        <div *ngIf="registerForm.controls.email.errors.required">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors.required">
             Email is required
         </div>
-        <div *ngIf="registerForm.controls.email.errors.email">
+        <div *ngIf="email.errors.email">
             Email should have type email
         </div>
     </div>
-    <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)">
-        <div *ngIf="registerForm.controls.password.errors.required">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors.required">
             Password is required
         </div>
-        <div *ngIf="registerForm.controls.password.errors.pattern">
+        <div *ngIf="password.errors.pattern">
             Password should contain english letters
         </div>
-        <div *ngIf="registerForm.controls.password.errors.minlength">
+        <div *ngIf="password.errors.minlength">
             Password should contain minimum 7 characters
         </div>
     </div>
-    <div *ngIf="registerForm.controls.confirmPass.invalid && (registerForm.controls.confirmPass.dirty || registerForm.controls.confirmPass.touched)">
-        <div *ngIf="registerForm.controls.confirmPass.errors?.checkConfirmPass">
-            Input must be equal to password
-        </div>
+    <div *ngIf="!isPasswordMatched(password,confirmPass)&&confirmPass.dirty">
+        Password isn't matched
     </div>
-    <div *ngIf="registerForm.controls.nickname.invalid && (registerForm.controls.nickname.dirty || registerForm.controls.nickname.touched)">
-        <div *ngIf="registerForm.controls.nickname.errors.required">
+    <div *ngIf="nickname.invalid && (nickname.dirty || nickname.touched)">
+        <div *ngIf="nickname.errors.required">
             Nickname is required
         </div>
-        <div *ngIf="registerForm.controls.nickname.errors.pattern">
+        <div *ngIf="nickname.errors.pattern">
             Nickname should contain english letters
         </div>
     </div>
-    <div *ngIf="registerForm.controls.phoneNumber.invalid && (registerForm.controls.phoneNumber.dirty || registerForm.controls.phoneNumber.touched)">
-        <div *ngIf="registerForm.controls.phoneNumber.errors.required">
+    <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+        <div *ngIf="phoneNumber.errors.required">
             Phone number is requried
         </div>
-        <div *ngIf="!registerForm.controls.phoneNumber.errors.forbiddenNumber?.invalid">
+        <div *ngIf="phoneNumber.errors.pattern">
             Phone number must start with +380
+        </div>
+    </div>
+    <div *ngIf="website.invalid && (website.dirty || website.touched)">
+        <div *ngIf="website.errors.required">
+            Website is required
+        </div>
+        <div *ngIf="website.errors.pattern">
+            Incorrect web pattern
         </div>
     </div>
     <!-- <div *ngIf="address.invalid && (address.dirty || address.touched)">

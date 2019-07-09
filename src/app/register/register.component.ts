@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,42 +15,53 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z-0-9]*$'), Validators.minLength(7)]],
+      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z-0-9]*$'), Validators.minLength(8)]],
       confirmPass: ['', [Validators.required]],
       nickname: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')]],
-      phoneNumber: ['', [Validators.required, this.forbiddenNumber()]],
-      website: ['', [Validators.required]]
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9_]*$')]],
+      website: ['', [Validators.required, Validators.pattern('^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}')]],
+      checkbox: ['', [Validators.required]],
     }, {
-      });
+        });
   }
 
-  forbiddenNumber() {
-    return (formControl) => {
-      const val = formControl.value.toString();
-      return val.substring(0, 4) === '+380' ? { forbiddenNumber: { invalid: false } } : null;
-    }
+  isPasswordMatched(password, passwordMatch) {
+    return password.value === passwordMatch.value;
   }
-
-  //   static isZipValid(zip) {
-  //   return zip.length < 3;
-  // }
-  //   static isCityValid(city) {
-  //   return city && city[0].toLowerCase() === 'a';
-  // }
   // crossValidation(formGroup) {
-  //   const zip = formGroup.get('zip').value;
-  //   const zipStatus = RegisterComponent.isZipValid(zip);
+  //   const password = formGroup.get('password').value;
+  //   const passwordMatch = formGroup.get('confirmPass').value;
 
-  //   const city = formGroup.get('city').value;
-  //   const cityStatus = RegisterComponent.isCityValid(city);
+  //   const passwordStatus = RegisterComponent.isPasswordMatched(password, passwordMatch);
+
 
   //   const validationResult = {
-  //     zipStatus,
-  //     cityStatus
+  //     passwordStatus,
   //   };
 
-  //   return validationResult.zipStatus && validationResult.cityStatus ? null : validationResult;
+  //   return validationResult.passwordStatus ? null : validationResult;
   // }
+
+  get email() {
+    return this.registerForm.get('email') as FormControl;
+  }
+  get password() {
+    return this.registerForm.get('password') as FormControl;
+  }
+  get confirmPass() {
+    return this.registerForm.get('confirmPass') as FormControl;
+  }
+  get nickname() {
+    return this.registerForm.get('nickname') as FormControl;
+  }
+  get phoneNumber() {
+    return this.registerForm.get('phoneNumber') as FormControl;
+  }
+  get website() {
+    return this.registerForm.get('website') as FormControl;
+  }
+
+
   ngOnInit() {
   }
 
