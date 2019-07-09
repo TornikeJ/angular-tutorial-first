@@ -1,0 +1,19 @@
+<p>exchange works?!</p>
+<form [formGroup]="exchangeForm" (ngSubmit)="onSubmit(exchangeForm.value)">
+    <div>
+        <select (change)="setBaseCurrency($event)">
+            <option>Select base currency</option>
+            <option [value]="currency" *ngFor="let currency of currencyBase">{{currency}}</option>
+        </select>
+        <label>Base</label>
+        <input type="number" required formControlName="baseCurrency">
+    </div>
+    <div>
+        <select (change)="setTargetCurrency($event)">
+                <option>Select target currency</option>
+                <option [value]="currency" *ngFor="let currency of currencyBase">{{currency}}</option>
+        </select>
+        <label>Target</label>
+        <input type="number" formControlName="targetCurrency" [value]="updatedCurrency">
+    </div>
+</form>

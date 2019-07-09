@@ -23,8 +23,7 @@ export class CurrencyComponent implements OnInit {
     };
     const complete = () => {
       this.length = this.rates.length;
-    }
-
+    };
     const filterCallback = ({ value }) => value > 50;
 
     const mapCallback = ({ rates }) => {
