@@ -25,9 +25,10 @@
                 <input type="url" formControlName="website">
             </div>
             <div class="agreement">
-                <input type="checkbox" formControlName="checkbox">
-                <label>I have read the <a href="#">agreement</a> </label>
-            </div>
+                    <input type="checkbox" (change)="isChecked($event)" formControlName="checkbox">
+                    <span>I have read the <a href="#">agreement </a></span>
+                  </div>
+                  <button class="button" type="submit" [disabled]="!userAgreed || !isPasswordMatched(password,confirmPass)">Register</button>
         </form>
 </div>
 

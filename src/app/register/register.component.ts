@@ -8,7 +8,8 @@ import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
-  public registerForm;
+  registerForm;
+  userAgreed;
 
   constructor(
     private formBuilder: FormBuilder
@@ -22,11 +23,18 @@ export class RegisterComponent implements OnInit {
       website: ['', [Validators.required, Validators.pattern('^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}')]],
       checkbox: ['', [Validators.required]],
     }, {
-        });
+      });
   }
 
   isPasswordMatched(password, passwordMatch) {
     return password.value === passwordMatch.value;
+  }
+  isChecked(agreement) {
+    if (agreement.target.checked) {
+      this.userAgreed = true;
+    } else {
+      this.userAgreed = false;
+    }
   }
   // crossValidation(formGroup) {
   //   const password = formGroup.get('password').value;
