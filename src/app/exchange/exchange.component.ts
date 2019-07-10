@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from '../currencies';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class ExchangeComponent implements OnInit {
   targetCurrency;
   exchangeRate;
   updatedValue;
+  updatedBaseValue;
   constructor(
     private httpClient: HttpClient,
     private formBuilder: FormBuilder) {
@@ -44,7 +45,7 @@ export class ExchangeComponent implements OnInit {
       this.Observer = new Observable(this.subscribe(this.baseCurrency, this.targetCurrency));
       const action = (value) => {
         this.exchangeRate = value['rates'][this.targetCurrency];
-        this.getResult();
+        this.getBaseResult();
       };
       const Observer = this.Observer;
       const observable = Observer
@@ -70,6 +71,12 @@ export class ExchangeComponent implements OnInit {
     if (this.base.value !== null) {
       this.updatedValue = this.exchangeRate * this.base.value;
       return this.updatedValue;
+    }
+  }
+  getBaseResult() {
+    if (this.target.value !== null) {
+      this.updatedBaseValue = (1 / this.exchangeRate) * this.target.value;
+      return this.updatedBaseValue;
     }
   }
 
