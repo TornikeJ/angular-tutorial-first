@@ -9,7 +9,6 @@ export class CartService {
     items = [];
 
     constructor(
-        private http: HttpClient
     ) { }
 
     addToCart(product) {
@@ -23,14 +22,10 @@ export class CartService {
 
         return this.items;
     }
-    removeItem(item){
+    removeItem(item) {
         const index = this.items.indexOf(item);
         this.items.splice(index, 1);
     }
-    getShippingPrices() {
-        return this.http.get('/assets/shipping.json');
-    }
-
     checkCart(product) {
         if (this.items.includes(product)) {
             return true;
