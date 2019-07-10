@@ -6,7 +6,7 @@
             <option [value]="currency" *ngFor="let currency of currencyBase">{{currency}}</option>
         </select>
         <label>Base</label>
-        <input type="number" required formControlName="base" [value]="updatedBaseValue" (change)="getResult()">
+        <input type="number" required formControlName="base" [value]="updatedBaseValue" (input)="getResult()">
     </div>
     <div>
         <select (change)="setTargetCurrency($event);">
@@ -14,6 +14,6 @@
                 <option [value]="currency" *ngFor="let currency of currencyBase">{{currency}}</option>
         </select>
         <label>Target</label>
-        <input type="number" formControlName="target" [value]="updatedValue" (change)="getBaseResult()">
+        <input type="number" formControlName="target" [value]="updatedValue" (input)="getBaseResult()">
     </div>
 </form>
