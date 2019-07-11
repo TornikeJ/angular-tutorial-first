@@ -11,7 +11,6 @@ export class UserService {
 
   addUser(user) {
     this.users.push(user.value);
-    console.log(this.users);
   }
 
   getAllUsers() {

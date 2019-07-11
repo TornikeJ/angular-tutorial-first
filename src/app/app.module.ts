@@ -24,6 +24,7 @@ import { AdminComponent } from './admin/admin.component';
 import { GuardComponent } from './guard/guard.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './login.guard';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'shipping', data: { name: 'Shipping' }, component: ShippingComponent },
       { path: 'wishlist', data: { name: 'Wishlist' }, component: WishlistComponent },
       { path: 'register', data: { name: 'Register' }, component: RegisterComponent },
-      { path: 'users', component: UsersComponent },
+      { path: 'users', canActivate: [LoginGuard], component: UsersComponent },
       { path: 'currency', component: CurrencyComponent },
       { path: 'exchange', component: ExchangeComponent },
       { path: 'dashboard', data: { name: 'Dashboard' }, component: DashboardComponent },

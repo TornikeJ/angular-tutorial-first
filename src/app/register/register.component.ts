@@ -75,6 +75,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(value) {
     this.userService.addUser(value);
+    this.registerForm.reset();
+    this.userAgreed = false;
   }
   ngOnInit() {
   }

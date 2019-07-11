@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UserService } from '../user.service';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,12 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
   loginForm;
 
+
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private userService: UserService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       email: [],
@@ -31,7 +35,14 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-  onSubmit(email, password) {
-    this.loginService.checkUser(email, password);
+  onSubmit(form) {
+    this.loginService.checkUser(form.value['email'], form.value['password']);
+    form.reset();
+    if (this.loginService.isUserAuthenticated()) {
+      this.router.navigate(['users']);
+    } else {
+      window.alert('Sorry, this user doesn\'t exist');
+    }
+
   }
 }
