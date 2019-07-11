@@ -10,7 +10,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm;
   userAgreed;
-
+  user
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
       checkbox: ['', [Validators.required]],
     }, {
       });
+
+    this.user = [];
   }
 
   isPasswordMatched(password, passwordMatch) {
@@ -69,7 +71,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('website') as FormControl;
   }
 
-
+  onSubmit(value) {
+    this.user.push(value);
+  }
   ngOnInit() {
   }
 
