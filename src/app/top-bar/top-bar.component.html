@@ -7,7 +7,7 @@
     <a [routerLink]="['/register']" class="button fancy-button">
         Register
     </a>
-    <a [routerLink]="['/users']" class="button fancy-button">
+    <a *ngIf="checkUser()" [routerLink]="['/users']" class="button fancy-button">
         Users
     </a>
     <a [routerLink]="['/login']" class="button fancy-button">
