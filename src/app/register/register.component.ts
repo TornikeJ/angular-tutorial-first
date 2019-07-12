@@ -40,19 +40,6 @@ export class RegisterComponent implements OnInit {
       this.userAgreed = false;
     }
   }
-  // crossValidation(formGroup) {
-  //   const password = formGroup.get('password').value;
-  //   const passwordMatch = formGroup.get('confirmPass').value;
-
-  //   const passwordStatus = RegisterComponent.isPasswordMatched(password, passwordMatch);
-
-
-  //   const validationResult = {
-  //     passwordStatus,
-  //   };
-
-  //   return validationResult.passwordStatus ? null : validationResult;
-  // }
 
   get email() {
     return this.registerForm.get('email') as FormControl;

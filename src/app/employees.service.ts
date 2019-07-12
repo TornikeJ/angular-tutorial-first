@@ -1,12 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 interface IEmployee {
   id: string;
   employee_name: string;
   employee_salary: string;
   employee_age: string;
+}
+interface AddEmployee {
+  name: {
+    type: string,
+    required: true
+  };
+  salary: {
+    type: number,
+    required: true
+  };
+  age: {
+    type: number,
+    required: true
+  };
 }
 
 @Injectable({
@@ -36,5 +51,11 @@ export class EmployeesService {
         });
         return employeesTransformed;
       }));
+  }
+
+  addEmployees(employee: AddEmployee): Observable<AddEmployee> {
+    const url = `${this.host}/create`;
+
+    return this.httpClient.post<AddEmployee>(url, employee);
   }
 }
