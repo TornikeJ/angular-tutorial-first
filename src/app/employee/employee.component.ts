@@ -14,6 +14,7 @@ export class EmployeeComponent implements OnInit {
   updateForm;
 
   constructor(
+    private router: Router,
     private routeState: ActivatedRoute,
     private employeesService: EmployeesService,
     private formBuilder: FormBuilder) {
@@ -29,7 +30,13 @@ export class EmployeeComponent implements OnInit {
     this.routeState.paramMap.subscribe((params) => {
       const employeeId = +params.get('employeeId');
       const employee = this.employeesService.getEmployee(employeeId).subscribe((data) => {
-        this.employee = data;
+        if (data.id === undefined) {
+          window.alert('Employee not found');
+          this.router.navigate(['employees']);
+        } else {
+          this.employee = data;
+        }
+
       });
     });
   }
@@ -57,7 +64,10 @@ export class EmployeeComponent implements OnInit {
 
       return this.updateEmployee = false;
     }
-
     return this.updateEmployee = true;
+  }
+  deleteEmployee() {
+    this.router.navigate(['employees']);
+    return this.employeesService.deleteEmployee(this.employee.id).subscribe();
   }
 }
