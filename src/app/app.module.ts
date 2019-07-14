@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
     GuardComponent,
     LoginComponent,
     EmployeesComponent,
-    EmployeeRegisterComponent
+    EmployeeRegisterComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
       { path: 'guard', data: { name: 'Guard' }, component: GuardComponent },
       { path: 'login', data: { name: 'Log in' }, component: LoginComponent },
       { path: 'employees', data: { name: 'Employees' }, component: EmployeesComponent },
-      { path: 'employee/register', data: { name: 'Employees Register' }, component: EmployeeRegisterComponent }
+      { path: 'employee/register', data: { name: 'Employees Register' }, component: EmployeeRegisterComponent },
+      { path: 'employees/:employeeId', data: { name: 'Employee' }, component: EmployeeComponent }
     ]),
     ReactiveFormsModule,
     FormsModule

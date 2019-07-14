@@ -52,7 +52,22 @@ export class EmployeesService {
         return employeesTransformed;
       }));
   }
+  getEmployee(id) {
+    const url = `${this.host}/employee/${id}`;
 
+    return this.httpClient.get(url).pipe(map((employee: IEmployee) => {
+
+      const { id, employee_name, employee_salary, employee_age } = employee;
+
+      return {
+        id,
+        name: employee_name,
+        salary: employee_salary,
+        age: employee_age
+      };
+
+    }));
+  }
   addEmployees(employee: AddEmployee): Observable<AddEmployee> {
     const url = `${this.host}/create`;
 
