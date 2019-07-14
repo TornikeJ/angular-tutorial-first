@@ -73,4 +73,9 @@ export class EmployeesService {
 
     return this.httpClient.post<AddEmployee>(url, employee);
   }
+
+  updateEmployee(id, employee) {
+    const url = `${this.host}/update/${id}`;
+    return this.httpClient.put(url, JSON.stringify(employee));
+  }
 }

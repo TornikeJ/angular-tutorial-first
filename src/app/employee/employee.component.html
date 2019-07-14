@@ -1,4 +1,5 @@
 <h1>This is our employee</h1>
+<form [formGroup]="updateForm">
 <td>
     <thead>
         <tr>
@@ -9,11 +10,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngIf="!updateEmployee">
             <td>{{employee?.id}}</td>
             <td>{{employee?.name}}</td>
-            <td>{{employee?.age}}</td>
             <td>{{employee?.salary}}</td>
+            <td>{{employee?.age}}</td>
+            <button class="button" type="button" (click)="updateEmployeeForm()">Edit</button>
         </tr>
-    </tbody>
-</td>
+            <tr *ngIf="updateEmployee">
+                <td>{{employee?.id}}</td>
+                <td><input type="text" formControlName="name" value={{employee?.name}}></td>
+                <td><input type="number" formControlName="salary" value={{employee?.salary}}></td>
+                <td><input type="number" formControlName="age" value={{employee?.age}}></td>
+                <td><button class="button" (click)="updateEmployeeForm()">Update</button></td>
+            </tr>
+        </tbody>
+    </td>
+</form>

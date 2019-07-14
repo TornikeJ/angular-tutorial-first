@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeesService } from '../employees.service';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -9,11 +10,19 @@ import { EmployeesService } from '../employees.service';
 })
 export class EmployeeComponent implements OnInit {
   employee;
-  employeeId;
+  updateEmployee = false;
+  updateForm;
 
   constructor(
     private routeState: ActivatedRoute,
-    private employeesService: EmployeesService) {
+    private employeesService: EmployeesService,
+    private formBuilder: FormBuilder) {
+    this.updateForm = this.formBuilder.group({
+      name: [''],
+      salary: [''],
+      age: [''],
+    }, {
+      });
   }
 
   ngOnInit() {
@@ -23,5 +32,32 @@ export class EmployeeComponent implements OnInit {
         this.employee = data;
       });
     });
+  }
+
+
+  get name() {
+    return this.updateForm.get('name') as FormControl;
+  }
+
+  get salary() {
+    return this.updateForm.get('salary') as FormControl;
+  }
+
+  get age() {
+    return this.updateForm.get('age') as FormControl;
+  }
+
+  updateEmployeeForm() {
+    if (this.updateEmployee) {
+      this.employeesService.updateEmployee(this.employee.id, {
+        name: this.name.value || this.employee.name,
+        salary: this.salary.value || this.employee.salary,
+        age: this.age.value || this.employee.age
+      }).subscribe();
+
+      return this.updateEmployee = false;
+    }
+
+    return this.updateEmployee = true;
   }
 }
