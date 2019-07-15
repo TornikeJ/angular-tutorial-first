@@ -1,5 +1,9 @@
 <h1>This is our employee</h1>
-<form [formGroup]="updateForm">
+<form [formGroup]="updateForm" >
+<div class="spinner" [@openClose]="isInitizilied? 'open' : 'close'">
+    <span class="spinner-inner-1"></span>
+    <span class="spinner-inner-2"></span>
+</div>
 <td>
     <thead>
         <tr>
@@ -15,16 +19,24 @@
             <td>{{employee?.name}}</td>
             <td>{{employee?.salary}}</td>
             <td>{{employee?.age}}</td>
+            <div class="spinner" [@openClose]="isInitizilied? 'open' : 'close'">
+                    <span class="spinner-inner-1"></span>
+                    <span class="spinner-inner-2"></span>
+            </div>
             <button class="button" type="button" (click)="updateEmployeeForm()">Edit</button>
         </tr>
-            <tr *ngIf="updateEmployee">
-                <td>{{employee?.id}}</td>
-                <td><input type="text" formControlName="name" value={{employee?.name}}></td>
-                <td><input type="number" formControlName="salary" value={{employee?.salary}}></td>
-                <td><input type="number" formControlName="age" value={{employee?.age}}></td>
-                <td><button class="button" (click)="updateEmployeeForm()">Update</button></td>
-                <td><button class="button" (click)="deleteEmployee()">Delete</button></td>
-            </tr>
+        <tr *ngIf="updateEmployee">
+            <td>{{employee?.id}}</td>
+            <td><input type="text" formControlName="name" value={{employee?.name}}></td>
+            <td><input type="number" formControlName="salary" value={{employee?.salary}}></td>
+            <td><input type="number" formControlName="age" value={{employee?.age}}></td>
+            <td><button class="button" (click)="updateEmployeeForm()">Update</button></td>
+            <div class="spinner" [@openClose]="isInitizilied? 'open' : 'close'">
+                <span class="spinner-inner-1"></span>
+                <span class="spinner-inner-2"></span>
+            </div>
+            <td><button class="button" (click)="deleteEmployee()">Delete</button></td>
+        </tr>
         </tbody>
     </td>
 </form>

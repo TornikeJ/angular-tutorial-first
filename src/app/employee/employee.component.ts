@@ -2,17 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeesService } from '../employees.service';
 import { FormBuilder, FormControl } from '@angular/forms';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        transform: 'translateX(0)'
+      })),
+      state('close', style({
+        display: 'none'
+      })),
+      transition('* => *', animate('0.2s')
+      )
+    ])
+  ]
 })
 export class EmployeeComponent implements OnInit {
   employee;
   updateEmployee = false;
   updateForm;
-
+  isInitilized = false;
   constructor(
     private router: Router,
     private routeState: ActivatedRoute,
@@ -36,7 +55,7 @@ export class EmployeeComponent implements OnInit {
         } else {
           this.employee = data;
         }
-
+        this.isInitilized = true;
       });
     });
   }
@@ -55,6 +74,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   updateEmployeeForm() {
+    this.isInitilized = false;
     if (this.updateEmployee) {
       this.employeesService.updateEmployee(this.employee.id, {
         name: this.name.value || this.employee.name,
@@ -62,12 +82,16 @@ export class EmployeeComponent implements OnInit {
         age: this.age.value || this.employee.age
       }).subscribe();
 
+      this.isInitilized = true;
       return this.updateEmployee = false;
     }
     return this.updateEmployee = true;
+
   }
   deleteEmployee() {
+    this.isInitilized = false;
     this.router.navigate(['employees']);
+    this.isInitilized = true;
     return this.employeesService.deleteEmployee(this.employee.id).subscribe();
   }
 }
