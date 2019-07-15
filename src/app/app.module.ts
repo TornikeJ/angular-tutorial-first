@@ -28,6 +28,8 @@ import { LoginGuard } from './login.guard';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { MenuComponent } from './menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { EmployeeComponent } from './employee/employee.component';
     LoginComponent,
     EmployeesComponent,
     EmployeeRegisterComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -65,9 +68,9 @@ import { EmployeeComponent } from './employee/employee.component';
       { path: 'shipping', data: { name: 'Shipping' }, component: ShippingComponent },
       { path: 'wishlist', data: { name: 'Wishlist' }, component: WishlistComponent },
       { path: 'register', data: { name: 'Register' }, component: RegisterComponent },
-      { path: 'users', data: { name: 'Users' },  canActivate: [LoginGuard], component: UsersComponent },
-      { path: 'currency', data: { name: 'Currency' },  component: CurrencyComponent },
-      { path: 'exchange', data: { name: 'Exchange' },  component: ExchangeComponent },
+      { path: 'users', data: { name: 'Users' }, canActivate: [LoginGuard], component: UsersComponent },
+      { path: 'currency', data: { name: 'Currency' }, component: CurrencyComponent },
+      { path: 'exchange', data: { name: 'Exchange' }, component: ExchangeComponent },
       { path: 'dashboard', data: { name: 'Dashboard' }, component: DashboardComponent },
       { path: 'dashboard/news', data: { name: 'News' }, component: NewsComponent },
       { path: 'dashboard/news/:articleId', data: { name: 'Article' }, component: ArticleComponent },
@@ -80,7 +83,8 @@ import { EmployeeComponent } from './employee/employee.component';
       { path: 'employees/:employeeId', data: { name: 'Employee' }, component: EmployeeComponent }
     ]),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
