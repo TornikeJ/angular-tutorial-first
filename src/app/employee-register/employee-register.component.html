@@ -1,5 +1,8 @@
 <h1>Register</h1>
-
+<div class="spinner" [@openClose]="isInitizilied? 'open' : 'close'">
+  <span class="spinner-inner-1"></span>
+  <span class="spinner-inner-2"></span>
+</div>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
     <div>
         <label>name</label>
@@ -12,6 +15,10 @@
     <div>
         <label>Age</label>
         <input type="number" required formControlName="age">
+    </div>
+    <div class="spinner" [@openClose]="isInitizilied? 'open' : 'close'">
+      <span class="spinner-inner-1"></span>
+      <span class="spinner-inner-2"></span>
     </div>
     <button class="button" type="submit">Register</button>
 </form>
